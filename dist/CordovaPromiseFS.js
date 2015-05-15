@@ -174,7 +174,7 @@ var CordovaPromiseFS =
 	            resolve(fs.root);
 	          } else {
 	            folders = folders.split('/').filter(function(folder) {
-	              return folder && folder.length > 0 && folder[0] !== '.';
+	              return folder && folder.length > 0 && folder !== '.' && folder !== '..';
 	            });
 	            __createDir(fs.root,folders,resolve,reject);
 	          }
@@ -200,7 +200,7 @@ var CordovaPromiseFS =
 	  function dir(path,options){
 	    path = normalize(path);
 
-	    // Strip trailing slash to prevent fs.root.getDirectory in function dir from returning with a file not found error on Windows 
+	    // Strip trailing slash to prevent fs.root.getDirectory in function dir from returning with a file not found error on Windows
 	    if (path.substr(-1) === '/') {
 	      path = path.substr(0, path.length - 1);
 	    }
